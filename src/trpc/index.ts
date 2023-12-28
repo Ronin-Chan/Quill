@@ -39,30 +39,47 @@ export const appRouter = router({
 
     return files
   }),
+  getFile: privateProcedure
+    .input(z.object({ key: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const { userId } = ctx
+      const file = await db.file.findFirst({
+        where: {
+          key: input.key,
+          userId,
+        }
+      })
+
+      if(!file) {
+        throw new TRPCError({ code: 'NOT_FOUND' })
+      }
+
+      return file
+    }),
   deleteFile: privateProcedure.input(
-    z.object({ id: z.string() })
-  ).mutation(async ({ ctx, input }) => {
-    const { userId } = ctx
+      z.object({ id: z.string() })
+    ).mutation(async ({ ctx, input }) => {
+      const { userId } = ctx
 
-    const file = await db.file.findFirst({
-      where: {
-        id: input.id,
-        userId,
+      const file = await db.file.findFirst({
+        where: {
+          id: input.id,
+          userId,
+        }
+      })
+
+      if (!file) {
+        throw new TRPCError({ code: 'NOT_FOUND' })
       }
+
+      await db.file.delete({
+        where: {
+          id: file.id
+        }
+      })
+
+      return file
     })
-
-    if(!file) {
-      throw new TRPCError({ code: 'NOT_FOUND' })
-    }
-
-    await db.file.delete({
-      where: {
-        id: file.id
-      }
-    })
-
-    return file
-  })
 });
 
 // Export type router type signature,
