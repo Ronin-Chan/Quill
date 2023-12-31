@@ -1,6 +1,6 @@
 import MaxWidthWrapper from '@/components/MaxWidthWrapper'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowBigRight, ArrowBigRightDash, ArrowRight, ChevronRight, ChevronRightSquare } from 'lucide-react'
 import { buttonVariants } from '@/components/ui/button'
 import Image from 'next/image'
 
@@ -32,7 +32,7 @@ export default function Home() {
           href='/dashboard'
           target='_blank'>
           Get started{' '}
-          <ArrowRight className='ml-2 h-5 w-5' />
+          <ChevronRight className='ml-2 h-5 w-5' />
         </Link>
       </MaxWidthWrapper>
 
