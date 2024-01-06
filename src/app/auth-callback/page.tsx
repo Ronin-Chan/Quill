@@ -17,7 +17,7 @@ const Page = () => {
     },
     onError: (error) => {
       if (error.data?.code === 'UNAUTHORIZED') {
-        router.push('/login')
+        router.push('/sign-in')
       }
     },
     retry: true,
