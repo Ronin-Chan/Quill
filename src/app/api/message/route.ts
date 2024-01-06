@@ -2,7 +2,6 @@ import { db } from "@/db"
 import { openai } from "@/lib/openai"
 import { pinecone } from "@/lib/pinecone"
 import { SendMessageValidator } from "@/lib/validators/SendMessageValidator"
-import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/dist/types"
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 import { OpenAIEmbeddings } from "langchain/embeddings/openai"
 import { PineconeStore } from "langchain/vectorstores/pinecone"
@@ -16,7 +15,7 @@ export const POST = async (req: NextRequest) => {
   const { getUser } = getKindeServerSession()
   const user = await getUser()
 
-  const { id: userId } = user as KindeUser
+  const { id: userId } = user
 
   if (!userId) {
     return new Response('Unauthorized', { status: 401 })
