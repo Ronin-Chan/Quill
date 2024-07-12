@@ -115,7 +115,7 @@ const Dashboard = ({ subscriptionPlan }: PageProps) => {
           <h2 className="text-2xl font-bold text-gray-900 flex gap-2">
             <span className="text-red-500">[Functionality Issue]</span>
             Database provider no longer support
-            <span className="text-red-500"> "Free tier"</span>
+            <span className="text-red-500"> &quot;Free tier&quot;</span>
           </h2>
         </div>
         <p className="mt-2 text-gray-500">
