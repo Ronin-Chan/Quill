@@ -85,7 +85,7 @@ const Page = async () => {
 
   return (
     <>
-      <MaxWidthWrapper className='mb-8 mt-24 text-center max-w-5xl'>
+      <MaxWidthWrapper className='mb-10 mt-20 text-center max-w-5xl'>
         <div className='mx-auto mb-10 sm:max-w-lg'>
           <h1 className='text-6xl font-bold sm:text-7xl'>
             Pricing
@@ -96,7 +96,7 @@ const Page = async () => {
           </p>
         </div>
 
-        <div className='pt-12 grid grid-cols-1 gap-10 lg:grid-cols-2'>
+        <div className='pt-10 grid grid-cols-1 gap-10 lg:grid-cols-2'>
           <TooltipProvider>
             {pricingItems.map(
               ({ plan, tagline, quota, features }) => {
@@ -109,28 +109,28 @@ const Page = async () => {
                   <div
                     key={plan}
                     className={cn(
-                      'relative rounded-2xl bg-white shadow-lg',
+                      'rounded-2xl bg-white shadow-lg',
                       {
-                        'border-2 border-yellow-400 shadow-yellow-100':
+                        'conic relative z-0 overflow-hidden':
                           plan === 'Pro',
-                        'border border-gray-200':
+                        'ring-[6px] ring-inset ring-gray-300':
                           plan !== 'Pro',
                       }
                     )}>
-                    {plan === 'Pro' && (
+                    {/* {plan === 'Pro' && (
                       <div className='absolute -top-5 left-0 right-0 mx-auto w-32 rounded-full bg-gradient-to-r from-yellow-400 to-red-500 px-3 py-2 text-sm font-medium text-white'>
                         Upgrade now
                       </div>
-                    )}
+                    )} */}
 
-                    <div className='p-5'>
+                    <div className='p-5 rounded-2xl'>
                       <h3 className='my-3 text-center font-display text-3xl font-bold'>
                         {plan}
                       </h3>
                       <p className='text-gray-500'>
                         {tagline}
                       </p>
-                      <p className='my-5 font-display text-6xl font-semibold'>
+                      <p className='my-5 font-display text-5xl font-semibold'>
                         ${price}
                       </p>
                       <p className='text-gray-500'>
@@ -138,7 +138,7 @@ const Page = async () => {
                       </p>
                     </div>
 
-                    <div className='flex h-20 items-center justify-center border-b border-t border-gray-200 bg-gray-50'>
+                    <div className='flex h-12 items-center justify-center border border-gray-200 bg-gray-50 mx-5 rounded-lg'>
                       <div className='flex items-center space-x-1'>
                         <p>
                           {quota.toLocaleString()} PDFs/mo
@@ -157,7 +157,7 @@ const Page = async () => {
                       </div>
                     </div>
 
-                    <ul className='my-10 space-y-5 px-8'>
+                    <ul className='my-6 space-y-5 px-8'>
                       {features.map(
                         ({ text, footnote, negative }) => (
                           <li
@@ -208,7 +208,7 @@ const Page = async () => {
                         )
                       )}
                     </ul>
-                    <div className='border-t border-gray-200' />
+                    <div className='border-t border-gray-200 mx-3'/>
                     <div className='p-5'>
                       {plan === 'Free' ? (
                         <Link

@@ -39,7 +39,7 @@ const MobileNav = ({ isAuth }: { isAuth: boolean }) => {
                     onClick={() =>
                       closeOnCurrent('/sign-up')
                     }
-                    className='flex items-center w-full font-semibold text-green-600'
+                    className='flex items-center w-full font-semibold text-yellow-500'
                     href='/sign-up'>
                     Get started
                     <ArrowRight className='ml-2 h-5 w-5' />

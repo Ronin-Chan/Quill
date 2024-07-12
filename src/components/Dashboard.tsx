@@ -9,12 +9,14 @@ import { format } from "date-fns";
 import { Button } from "./ui/button";
 import { useState } from "react";
 import { getUserSubscriptionPlan } from "@/lib/stripe";
+import Image from 'next/image'
+import { Angry } from 'lucide-react';
 
 interface PageProps {
   subscriptionPlan: Awaited<ReturnType<typeof getUserSubscriptionPlan>>
 }
 
-const Dashboard = ({subscriptionPlan}: PageProps) => {
+const Dashboard = ({ subscriptionPlan }: PageProps) => {
   const utils = trpc.useUtils();
 
   const [currentlyDeletingFile, setCurrentlyDeletingFile] = useState<string | null>(null);
@@ -31,7 +33,6 @@ const Dashboard = ({subscriptionPlan}: PageProps) => {
       setCurrentlyDeletingFile(null);
     }
   });
-
 
   return (
     <main className="mx-auto max-w-7xl md:p-10">
@@ -106,6 +107,32 @@ const Dashboard = ({subscriptionPlan}: PageProps) => {
           <p>Let&apos;s upload your first PDF.</p>
         </div>
       )}
+
+      {/* remove after fixing database issue */}
+      <div className="mt-10">
+        <div className='flex gap-2 items-center'>
+          <Angry className="text-red-500" height={60} width={60} />
+          <h2 className="text-2xl font-bold text-gray-900 flex gap-2">
+            <span className="text-red-500">[Functionality Issue]</span>
+            Database provider no longer support
+            <span className="text-red-500"> "Free tier"</span>
+          </h2>
+        </div>
+        <p className="mt-2 text-gray-500">
+          We are currently facing issues with our database provider. We are working on migrating to a new provider.
+        </p>
+
+        <div className="flex justify-center mt-4">
+          <Image
+            src='/db-issue-reason.jpg'
+            alt='database issue reason'
+            width={500}
+            height={300}
+            quality={100}
+            className='rounded-md bg-white p-2 sm:p-8 md:p-20 shadow-2xl ring-1 ring-gray-900/10'
+          />
+        </div>
+      </div>
     </main>
   )
 }

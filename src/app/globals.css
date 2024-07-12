@@ -83,3 +83,36 @@
 .scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
   border-radius: 7px;
 }
+
+@keyframes rotate {
+  100% {
+      transform: rotate(1turn);
+  }
+}
+
+.conic::before {
+  content: '';
+  position: absolute;
+  z-index: -2;
+  left: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
+  background-color: rgb(200, 0, 47);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-image: conic-gradient(transparent, rgb(255, 234, 43), transparent 30%);
+  animation: rotate 6s linear infinite;
+}
+
+.conic::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 6px;
+  top: 6px;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  background: #ffffff;
+  border-radius: 11px;
+}

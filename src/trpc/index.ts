@@ -35,11 +35,25 @@ export const appRouter = router({
     return { success: true }
   }),
   getUserFiles: privateProcedure.query(async ({ ctx }) => {
-    const files = await db.file.findMany({
-      where: {
-        userId: ctx.userId
+    // const files = await db.file.findMany({
+    //   where: {
+    //     userId: ctx.userId
+    //   }
+    // })
+
+    // mock
+    const files = [
+      {
+        id: "exampleFileId",
+        name: "example-file.pdf",
+        uploadStatus: "SUCCESS",
+        url: "https://example.com/files/example-file.pdf",
+        key: "files/example-file.pdf",
+        createdAt: new Date("2024-07-12T12:00:00Z"),
+        updatedAt: new Date("2024-07-12T12:30:00Z"),
+        userId: "exampleUserId",
       }
-    })
+    ]
 
     return files
   }),

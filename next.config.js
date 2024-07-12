@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    domains: ['gravatar.com'],
+  },
   async redirects() {
     return [
       {

@@ -3,6 +3,7 @@ import PDFRenderer from "@/components/PDFRenderer";
 import { db } from "@/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { notFound, redirect } from "next/navigation";
+import { Angry } from 'lucide-react';
 
 interface PageProps {
   params: {
@@ -17,18 +18,30 @@ const Page = async ({ params }: PageProps) => {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
-  if(!user || !user.id) {
+  if (!user || !user.id) {
     redirect(`/auth-callback?origin=dashboard/${fileId}`)
   }
 
-  const file = await db.file.findFirst({
-    where: {
-      id: fileId,
-      userId: user.id
-    },
-  })
+  // const file = await db.file.findFirst({
+  //   where: {
+  //     id: fileId,
+  //     userId: user.id
+  //   },
+  // })
 
-  if(!file) {
+  // mock
+  const file = {
+    id: "exampleFileId",
+    name: "example-file.pdf",
+    uploadStatus: "SUCCESS",
+    url: "https://example.com/files/example-file.pdf",
+    key: "files/example-file.pdf",
+    createdAt: new Date("2024-07-12T12:00:00Z"),
+    updatedAt: new Date("2024-07-12T12:30:00Z"),
+    userId: "exampleUserId",
+  };
+
+  if (!file) {
     notFound()
   }
 
@@ -38,14 +51,31 @@ const Page = async ({ params }: PageProps) => {
         {/* left */}
         <div className="flex-1 xl:flex">
           <div className='px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6'>
-            <PDFRenderer url={file.url}/>
+            {/* <PDFRenderer url={file.url}/> */}
+            <PDFRenderer url="https://pdfobject.com/pdf/sample-3pp.pdf" />
           </div>
         </div>
 
         {/* right */}
-        <div className='shrink-0 flex-[0.75] border-t border-gray-200 lg:w-96 lg:border-l lg:border-t-0'>
+        {/* <div className='shrink-0 flex-[0.75] border-t border-gray-200 lg:w-96 lg:border-l lg:border-t-0'>
           <ChatWrapper fileId={file.id} />
+        </div> */}
+
+        {/* remove after fixing database issue */}
+        <div className='shrink-0 flex-[0.75] border-t border-gray-200 lg:w-96 lg:border-l lg:border-t-0 flex items-center justify-center h-screen'>
+          <div className='flex flex-col items-center'>
+            <div className='flex gap-2 items-center'>
+              <Angry className="text-red-500" height={60} width={60} />
+              <h2 className="text-2xl font-bold text-red-500 flex gap-2">
+                [Functionality Issue]
+              </h2>
+            </div>
+            <p className='text-gray-500 text-center mt-2'>
+              This feature is currently disabled due to a database issue.
+            </p>
+          </div>
         </div>
+
       </div>
     </div>
   )
