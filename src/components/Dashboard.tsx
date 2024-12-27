@@ -80,7 +80,7 @@ const Dashboard = ({ subscriptionPlan }: PageProps) => {
 
                   <div className='flex items-center gap-2'>
                     <MessageSquare className='h-4 w-4' />
-                    mocked
+                    Mocked
                   </div>
 
                   <Button
@@ -107,32 +107,6 @@ const Dashboard = ({ subscriptionPlan }: PageProps) => {
           <p>Let&apos;s upload your first PDF.</p>
         </div>
       )}
-
-      {/* remove after fixing database issue */}
-      <div className="mt-10">
-        <div className='flex gap-2 items-center'>
-          <Angry className="text-red-500" height={60} width={60} />
-          <h2 className="text-2xl font-bold text-gray-900 flex gap-2">
-            <span className="text-red-500">[Functionality Issue]</span>
-            Database provider no longer support
-            <span className="text-red-500"> &quot;Free tier&quot;</span>
-          </h2>
-        </div>
-        <p className="mt-2 text-gray-500">
-          We are currently facing issues with our database provider. We are working on migrating to a new provider.
-        </p>
-
-        <div className="flex justify-center mt-4">
-          <Image
-            src='/db-issue-reason.jpg'
-            alt='database issue reason'
-            width={500}
-            height={300}
-            quality={100}
-            className='rounded-md bg-white p-2 sm:p-8 md:p-20 shadow-2xl ring-1 ring-gray-900/10'
-          />
-        </div>
-      </div>
     </main>
   )
 }
