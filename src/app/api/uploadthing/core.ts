@@ -10,8 +10,6 @@ import { PLANS } from "@/config/stripe";
 
 const f = createUploadthing();
 
-const auth = (req: Request) => ({ id: "fakeId" }); // Fake auth function
-
 const middleware = async () => {
   // This code runs on your server before upload
   const { getUser } = getKindeServerSession();

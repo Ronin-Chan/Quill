@@ -21,21 +21,11 @@ export async function getUserSubscriptionPlan() {
     }
   }
 
-  // const dbUser = await db.user.findFirst({
-  //   where: {
-  //     id: user.id,
-  //   },
-  // })
-  const dbUser = {
-    id: "someUserId",
-    email: "user@example.com",
-    stripeCustomerId: "cus_QSXrRclKSc0fec",
-    stripeSubscriptionId: "sub_1Pbcq2IW8qXYETFQvpYuEn72",
-    stripePriceId: "stripe_price_789",
-    stripeCurrentPeriodEnd: new Date("2024-12-31T23:59:59Z"), // Example date
-    File: [], // Array of File objects (if any)
-    Messages: [], // Array of Message objects (if any)
-  };
+  const dbUser = await db.user.findFirst({
+    where: {
+      id: user.id,
+    },
+  })
 
   if (!dbUser) {
     return {

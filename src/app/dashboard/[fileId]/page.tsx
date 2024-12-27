@@ -22,24 +22,12 @@ const Page = async ({ params }: PageProps) => {
     redirect(`/auth-callback?origin=dashboard/${fileId}`)
   }
 
-  // const file = await db.file.findFirst({
-  //   where: {
-  //     id: fileId,
-  //     userId: user.id
-  //   },
-  // })
-
-  // mock
-  const file = {
-    id: "exampleFileId",
-    name: "example-file.pdf",
-    uploadStatus: "SUCCESS",
-    url: "https://example.com/files/example-file.pdf",
-    key: "files/example-file.pdf",
-    createdAt: new Date("2024-07-12T12:00:00Z"),
-    updatedAt: new Date("2024-07-12T12:30:00Z"),
-    userId: "exampleUserId",
-  };
+  const file = await db.file.findFirst({
+    where: {
+      id: fileId,
+      userId: user.id
+    },
+  })
 
   if (!file) {
     notFound()
